@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suno Na Jaan...</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Noto+Serif+Devanagari:wght@400;700&display=swap');
+        
+        body {
+            background: #0f172a;
+            color: #f1f5f9;
+            font-family: 'Noto Serif Devanagari', serif;
+            overflow-x: hidden;
+        }
+
+        .cursive {
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .fade-in {
+            animation: fadeIn 3s ease-in forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: twinkle var(--duration) infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .heart-beat {
+            animation: beat 1.5s infinite;
+        }
+
+        @keyframes beat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-6 relative">
+
+    <!-- Stars Background -->
+    <div id="stars-container"></div>
+
+    <div class="max-w-2xl w-full space-y-12 z-10">
+        
+        <!-- Opening -->
+        <div class="text-center fade-in" style="animation-delay: 0.5s;">
+            <div class="text-6xl mb-4 heart-beat">🥺</div>
+            <h1 class="text-3xl md:text-4xl font-bold text-pink-400 mb-2">Main Bahut Sharminda Hoon...</h1>
+            <p class="text-gray-400 italic">Maine tumhari baat nahi maani, aur wahi meri sabse badi galti thi.</p>
+        </div>
+
+        <!-- The Message -->
+        <div class="glass p-8 rounded-3xl space-y-6 leading-relaxed fade-in text-lg" style="animation-delay: 2s;">
+            <p>
+                Parso raat jab tum mujhse baat karna chah rahi thi, aur main jabardasti so gaya... wo lamha yaad karke ab mujhe khud par gussa aa raha hai. Tumne haq se mujhse waqt maanga tha, aur maine apni zidd ke aage tumhare jazbaaton ki kadar nahi ki.
+            </p>
+            
+            <p class="text-pink-300 font-semibold">
+                Mujhe us waqt samajhna chahiye tha ki tumhari baatein mere liye kitni keemti hain. Maine sirf apni neend dekhi, tumhara intezaar aur tumhara pyaar nahi dekha. 
+            </p>
+
+            <p>
+                Main janta hoon mera "sorry" kehna kafi nahi hai, kyunki maine tumhara dil dukhaya hai. Par sach mano, tumse door reh kar mujhe ehsas ho gaya hai ki tumhari awaaz sune bina sukoon nahi milta. Meri har zidd tumhare samne choti hai.
+            </p>
+
+            <p class="italic text-gray-400">
+                Kya ek baar phir se wahi purana wala "hum" ban sakte hain? Main wada karta hoon, ab kabhi tumhari baat ansuni nahi karunga.
+            </p>
+        </div>
+
+        <!-- Interactive Part -->
+        <div class="text-center space-y-6 fade-in" style="animation-delay: 4s;">
+            <p class="text-xl cursive text-pink-200">Tumhari smile ke bina sab andhera hai...</p>
+            
+            <div class="flex flex-col md:flex-row gap-4 justify-center items-center">
+                <button onclick="forgive()" class="bg-pink-600 hover:bg-pink-500 text-white px-8 py-3 rounded-full transition-all transform hover:scale-110 shadow-[0_0_20px_rgba(219,39,119,0.5)]">
+                    Maaf Kar Do Na? ❤️
+                </button>
+            </div>
+        </div>
+
+        <!-- Footer Note -->
+        <div id="final-note" class="hidden text-center fade-in py-10">
+            <h2 class="text-2xl font-bold text-green-400 mb-2">I Love You So Much!</h2>
+            <p class="text-gray-300">Ab jaldi se ek pyaara sa message karke mujhe is saza se azaad kar do. 🌹</p>
+        </div>
+
+    </div>
+
+    <script>
+        // Generate Stars
+        const container = document.getElementById('stars-container');
+        for (let i = 0; i < 100; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            const size = Math.random() * 3 + 'px';
+            star.style.width = size;
+            star.style.height = size;
+            star.style.top = Math.random() * 100 + 'vh';
+            star.style.left = Math.random() * 100 + 'vw';
+            star.style.setProperty('--duration', Math.random() * 3 + 2 + 's');
+            container.appendChild(star);
+        }
+
+        function forgive() {
+            const finalNote = document.getElementById('final-note');
+            finalNote.classList.remove('hidden');
+            
+            // Heart burst animation
+            for (let i = 0; i < 40; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.innerHTML = ['❤️', '💖', '🌹', '✨'][Math.floor(Math.random()*4)];
+                    heart.style.position = 'fixed';
+                    heart.style.left = '50%';
+                    heart.style.top = '50%';
+                    heart.style.fontSize = '24px';
+                    heart.style.transition = 'all 2s ease-out';
+                    document.body.appendChild(heart);
+                    
+                    const angle = Math.random() * Math.PI * 2;
+                    const dist = 200 + Math.random() * 300;
+                    const tx = Math.cos(angle) * dist;
+                    const ty = Math.sin(angle) * dist;
+                    
+                    setTimeout(() => {
+                        heart.style.transform = `translate(${tx}px, ${ty}px)`;
+                        heart.style.opacity = '0';
+                    }, 100);
+                    
+                    setTimeout(() => heart.remove(), 2100);
+                }, i * 50);
+            }
+
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
+
